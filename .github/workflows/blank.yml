@@ -11,15 +11,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - id: files
+      - name: get-changed-files
+        id: files
         uses: jitterbit/get-changed-files@v1
         with:
           format: 'json'
-      - run: |
+
+      - namme: Run Formatter
+        run: |
+          pip install --upgrade black
           readarray -t files <<<"$(jq -r '.[]' <<<'${{ steps.files.outputs.added_modified }}')"
           for file in ${files[@]}; do
-            echo ${file}
-            if [[ ${file} == "*.py" ]]; then
-              echo a${file}
+            if [[ ${file##*.} == "py" ]]; then
+              black ${file}
             fi
           done
