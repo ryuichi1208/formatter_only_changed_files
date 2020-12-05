@@ -17,7 +17,7 @@ jobs:
         with:
           format: 'json'
 
-      - namme: Run Formatter
+      - name: Run Formatter
         run: |
           pip install --upgrade black
           readarray -t files <<<"$(jq -r '.[]' <<<'${{ steps.files.outputs.added_modified }}')"
