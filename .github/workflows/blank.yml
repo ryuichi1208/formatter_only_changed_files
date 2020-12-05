@@ -16,4 +16,4 @@ jobs:
         with:
           format: 'json'
       - run: |
-          echo ${{ steps.files.outputs.removed }}
+          echo ${{ steps.files.outputs.all }}
