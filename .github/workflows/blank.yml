@@ -18,7 +18,8 @@ jobs:
       - run: |
           readarray -t files <<<"$(jq -r '.[]' <<<'${{ steps.files.outputs.added_modified }}')"
           for file in ${files[@]}; do
+            echo ${file}
             if [[ ${file} == "*.py" ]]; then
-              echo ${file}
+              echo a${file}
             fi
           done
