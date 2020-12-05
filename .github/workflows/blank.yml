@@ -1,0 +1,19 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - id: files
+        uses: jitterbit/get-changed-files@v1
+        with:
+          format: 'json'
+      - run: |
+          echo ${{ steps.files.outputs.removed }}
